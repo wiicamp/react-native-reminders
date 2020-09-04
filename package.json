@@ -101,9 +101,6 @@
       }
     }
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "eslintConfig": {
     "extends": [
       "@react-native-community",
