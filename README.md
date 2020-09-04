@@ -11,7 +11,7 @@ npm install react-native-reminders
 ## Usage
 
 ```js
-import Reminders from "react-native-reminders";
+import Reminders from "@lampn9397/react-native-reminders";
 
 // ...
 

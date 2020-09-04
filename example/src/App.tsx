@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import Reminders from 'react-native-reminders';
+import Reminders from '@lampn9397/react-native-reminders';
 
 export default function App() {
   const [state, setState] = React.useState({

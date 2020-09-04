@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "react-native-reminders": ["./src/index"]
+      "@lampn9397/react-native-reminders": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
