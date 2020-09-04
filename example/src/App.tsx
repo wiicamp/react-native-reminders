@@ -1,17 +1,69 @@
-import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import Reminders from 'react-native-reminders';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [state, setState] = React.useState({
+    title: 'Test add reminder',
+    note: 'Note',
+  });
+
+  const getReminders = React.useCallback(async () => {
+    try {
+      const isAllow = await Reminders.requestPermission();
+
+      if (isAllow) {
+        const reminders = await Reminders.getReminders();
+        console.log('requestPermission -> reminders', reminders);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const onChangeText = React.useCallback((text, fieldName) => {
+    setState((prevState) => ({ ...prevState, [fieldName]: text }));
+  }, []);
+
+  const addReminder = React.useCallback(async () => {
+    try {
+      const result = await Reminders.addReminder(state);
+      console.log('App -> result', result);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   React.useEffect(() => {
-    Reminders.multiply(3, 7).then(setResult);
+    getReminders();
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <TouchableOpacity style={styles.buttonTouchable} onPress={getReminders}>
+        <Text style={styles.buttonText}>Get Reminders</Text>
+      </TouchableOpacity>
+
+      <TextInput
+        value={state.title}
+        style={styles.textinput}
+        onChangeText={(text) => onChangeText(text, 'title')}
+      />
+      <TextInput
+        value={state.note}
+        style={styles.textinput}
+        onChangeText={(text) => onChangeText(text, 'note')}
+      />
+
+      <TouchableOpacity style={styles.buttonTouchable} onPress={addReminder}>
+        <Text style={styles.buttonText}>Add Reminder</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -19,7 +71,25 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonTouchable: {
+    margin: 12,
+    padding: 12,
+    // borderWidth: 1,
+    borderRadius: 4,
+    backgroundColor: '#0984e3',
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  textinput: {
+    margin: 12,
+    padding: 12,
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: '#fd79a8',
   },
 });
