@@ -1,6 +1,6 @@
 {
   "name": "react-native-reminders",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React Native Reminders is a modern, well-supported, and cross-platform Reminders for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -101,7 +101,9 @@
       }
     }
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "eslintConfig": {
     "extends": [
       "@react-native-community",
@@ -120,7 +122,10 @@
       ]
     }
   },
-  "eslintIgnore": ["node_modules/", "lib/"],
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,
@@ -131,6 +136,10 @@
   "@react-native-community/bob": {
     "source": "src",
     "output": "lib",
-    "targets": ["commonjs", "module", "typescript"]
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
   }
 }
