@@ -23,6 +23,7 @@ Reminders.requestPermission();
 // Get reminders
 Reminders.requestPermission();
 
+// Add reminder
 Reminders.addReminder({
   title: 'Wake-up reminder',
   note: 'Wake-up and have breakfast!',
