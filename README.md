@@ -5,7 +5,11 @@ React Native Reminders is a modern, well-supported, and cross-platform Reminders
 ## Installation
 
 ```sh
-npm install react-native-reminders
+npm install @lampn9397/react-native-reminders
+```
+Or
+```sh
+yarn add @lampn9397/react-native-reminders
 ```
 
 ## Usage
@@ -13,9 +17,16 @@ npm install react-native-reminders
 ```js
 import Reminders from "@lampn9397/react-native-reminders";
 
-// ...
+// Request permission
+Reminders.requestPermission();
 
-const result = await Reminders.multiply(3, 7);
+// Get reminders
+Reminders.requestPermission();
+
+Reminders.addReminder({
+  title: 'Wake-up reminder',
+  note: 'Wake-up and have breakfast!',
+});
 ```
 
 ## Contributing
