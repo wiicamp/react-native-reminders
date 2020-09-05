@@ -21,7 +21,7 @@ import Reminders from "@lampn9397/react-native-reminders";
 Reminders.requestPermission();
 
 // Get reminders
-Reminders.requestPermission();
+Reminders.getReminders();
 
 // Add reminder
 Reminders.addReminder({
