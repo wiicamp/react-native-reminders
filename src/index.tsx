@@ -15,10 +15,10 @@ type ReminderType = {
 type ReminderConfig = {
   title: String;
   note: String;
+  timestamp: Number;
 };
 
 type RemindersType = {
-  multiply(a: number, b: number): Promise<number>;
   requestPermission(): Promise<boolean>;
   getReminders(): Promise<Array<ReminderType>>;
   addReminder(config: ReminderConfig): Promise<ReminderType>;

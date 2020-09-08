@@ -3,11 +3,6 @@ import EventKit;
 @objc(Reminders)
 class Reminders: NSObject {
     let eventStore = EKEventStore();
-
-//    @objc(multiply:withB:withResolver:withRejecter:)
-//    func multiply(a: Float, b: Float, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-//        resolve(a*b)
-//    }
     
     @objc
     func requestPermission(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
@@ -59,9 +54,12 @@ class Reminders: NSObject {
         reminder.priority = 2;
         reminder.notes = config["note"] as? String;
         reminder.title = config["title"] as? String;
-        reminder.addAlarm(EKAlarm(absoluteDate: Date()));
         reminder.calendar = eventStore.defaultCalendarForNewReminders();
-        
+        print("config[\"timestamp\"] = \(String(describing: config["timestamp"]))")
+        var timestamp = config["timestamp"] as? Double;
+        timestamp! /= 1000;
+        print("timestamp = \(String(describing: timestamp))")
+        reminder.addAlarm(EKAlarm(absoluteDate: Date(timeIntervalSince1970: timestamp!)));
         do {
             try eventStore.save(reminder, commit: true);
             resolve(toDictionary(reminder: reminder));
