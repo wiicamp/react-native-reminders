@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@lampn9397/react-native-reminders": ["./src/index"]
+      "@wiicamp/react-native-reminders": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

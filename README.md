@@ -5,11 +5,11 @@ React Native Reminders is a modern, well-supported, and cross-platform Reminders
 ## Installation
 
 ```sh
-yarn add @lampn9397/react-native-reminders
+yarn add @wiicamp/react-native-reminders
 ```
 Or
 ```sh
-npm install @lampn9397/react-native-reminders
+npm install @wiicamp/react-native-reminders
 ```
 
 #### Using React Native >= 0.60
@@ -24,7 +24,7 @@ Linking the package manually is not required anymore with [Autolinking](https://
 You then need to link the native parts of the library for the platforms you are using. The easiest way to link the library is using the CLI tool by running this command from the root of your project:
 
 ```
-react-native link @lampn9397/react-native-reminders
+react-native link @wiicamp/react-native-reminders
 ```
 
 ### Permissions
@@ -51,7 +51,7 @@ Then you have to explicitly ask for the permission
 ## Usage
 
 ```js
-import Reminders from "@lampn9397/react-native-reminders";
+import Reminders from "@wiicamp/react-native-reminders";
 
 // Request permission
 Reminders.requestPermission();

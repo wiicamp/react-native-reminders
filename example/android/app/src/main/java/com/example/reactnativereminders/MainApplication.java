@@ -11,7 +11,7 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import com.lampn9397.reactnativereminders.RemindersPackage;
+import com.wiicamp.reactnativereminders.RemindersPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
