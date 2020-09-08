@@ -2,6 +2,11 @@
 
 @interface RCT_EXTERN_MODULE(Reminders, NSObject)
 
++ (BOOL)requiresMainQueueSetup
+{
+  return YES;
+}
+
 RCT_EXTERN_METHOD(requestPermission: (RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock))
 
 RCT_EXTERN_METHOD(getReminders: (RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock))
