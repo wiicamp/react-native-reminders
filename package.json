@@ -34,13 +34,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/Wiicamp/react-native-reminders",
+  "repository": "https://github.com/wiicamp/react-native-reminders",
   "author": "lampn9397 <lampn9397@gmail.com> (https://github.com/lampn9397)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Wiicamp/react-native-reminders/issues"
+    "url": "https://github.com/wiicamp/react-native-reminders/issues"
   },
-  "homepage": "https://github.com/Wiicamp/react-native-reminders#readme",
+  "homepage": "https://github.com/wiicamp/react-native-reminders#readme",
   "devDependencies": {
     "@commitlint/config-conventional": "^8.3.4",
     "@react-native-community/bob": "^0.16.2",
