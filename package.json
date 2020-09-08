@@ -1,6 +1,6 @@
 {
   "name": "@lampn9397/react-native-reminders",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React Native Reminders is a modern, well-supported, and cross-platform Reminders for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
