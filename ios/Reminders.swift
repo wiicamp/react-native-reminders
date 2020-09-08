@@ -2,6 +2,10 @@ import EventKit;
 
 @objc(Reminders)
 class Reminders: NSObject {
+    @objc static func requiresMainQueueSetup() -> Bool {
+        return false
+    }
+    
     let eventStore = EKEventStore();
     
     @objc
