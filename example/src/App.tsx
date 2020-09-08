@@ -33,7 +33,11 @@ export default function App() {
 
   const addReminder = React.useCallback(async () => {
     try {
-      const result = await Reminders.addReminder(state);
+      const reminderModel = {
+        ...state,
+        timestamp: Date.now() + 60000 * 10,
+      };
+      const result = await Reminders.addReminder(reminderModel);
       console.log('App -> result', result);
     } catch (error) {
       console.log(error);
