@@ -1,4 +1,7 @@
-# react-native-reminders
+# React Native Reminders
+[![NPM version](https://img.shields.io/npm/v/react-native-easy-select)](https://www.npmjs.com/package/react-native-easy-select)
+[![License](https://img.shields.io/npm/l/react-native-easy-select)](https://github.com/havinhthai/react-native-easy-select/blob/master/LICENSE)
+![Demo](https://reactjs.org/logo-og.png =100x100)
 
 React Native Reminders is a modern, well-supported, and cross-platform Reminders for React Native
 
