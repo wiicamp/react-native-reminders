@@ -1,4 +1,4 @@
-package com.lampn9397.reactnativereminders
+package com.wiicamp.reactnativereminders
 
 import java.util.Arrays
 
