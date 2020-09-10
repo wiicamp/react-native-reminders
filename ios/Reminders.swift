@@ -28,8 +28,7 @@ class Reminders: NSObject {
     
     func toDictionary(reminder: EKReminder) -> Dictionary<String, Any?> {
         let alarms = reminder.alarms?.map({[
-                "offset": $0.relativeOffset,
-                "date": $0.absoluteDate?.description as Any,
+                "timestamp": ($0.absoluteDate?.timeIntervalSince1970 ?? 0) * 1000
             ]});
         
         return [

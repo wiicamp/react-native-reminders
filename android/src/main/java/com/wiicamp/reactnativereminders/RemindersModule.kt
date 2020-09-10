@@ -60,16 +60,14 @@ public class RemindersModule(reactContext: ReactApplicationContext) : ReactConte
     @ReactMethod
     fun getReminders(promise: Promise) {
         val projection: Array<String> = arrayOf(
-                CalendarContract.CalendarAlerts._ID,
-                CalendarContract.CalendarAlerts.TITLE,
-                CalendarContract.CalendarAlerts.DESCRIPTION,
-                CalendarContract.CalendarAlerts.DTSTART,
-                CalendarContract.CalendarAlerts.DTEND,
-                CalendarContract.CalendarAlerts.EVENT_LOCATION
+                CalendarContract.Events._ID,
+                CalendarContract.Events.TITLE,
+                CalendarContract.Events.DESCRIPTION,
+                CalendarContract.Events.DTSTART
         )
 
         val cursor = reactApplicationContext.contentResolver.query(
-                CalendarContract.CalendarAlerts.CONTENT_URI,
+                CalendarContract.Events.CONTENT_URI,
                 projection,
                 null,
                 null,
@@ -88,11 +86,19 @@ public class RemindersModule(reactContext: ReactApplicationContext) : ReactConte
                         var key = cursor.getColumnName(columnIndex)
                         val value = cursor.getString(columnIndex)
 
-                        if(key.equals("_id")) {
-                            key = "id";
-                        }
+                        if(key == "dtstart") {
+                            val alarms = WritableNativeArray();
+                            val alarmModel = WritableNativeMap();
+                            alarmModel.putDouble("timestamp", value.toDouble())
+                            alarms.pushMap(alarmModel);
+                            calendarMap.putArray("alarms", alarms)
+                        } else {
+                            if(key == "_id") {
+                                key = "id";
+                            }
 
-                        calendarMap.putString(key, value)
+                            calendarMap.putString(key, value)
+                        }
                     }
                     results.pushMap(calendarMap);
                 }
