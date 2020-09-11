@@ -58,10 +58,8 @@ class Reminders: NSObject {
         reminder.notes = config["note"] as? String;
         reminder.title = config["title"] as? String;
         reminder.calendar = eventStore.defaultCalendarForNewReminders();
-        print("config[\"timestamp\"] = \(String(describing: config["timestamp"]))")
         var timestamp = config["timestamp"] as? Double;
         timestamp! /= 1000;
-        print("timestamp = \(String(describing: timestamp))")
         reminder.addAlarm(EKAlarm(absoluteDate: Date(timeIntervalSince1970: timestamp!)));
         do {
             try eventStore.save(reminder, commit: true);
