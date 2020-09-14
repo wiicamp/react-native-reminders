@@ -10,6 +10,7 @@ import Reminders from '@wiicamp/react-native-reminders';
 
 export default function App() {
   const [state, setState] = React.useState({
+    id: '',
     title: 'Test add reminder',
     note: 'Note',
   });
@@ -17,6 +18,7 @@ export default function App() {
   const getReminders = React.useCallback(async () => {
     try {
       const isAllow = await Reminders.requestPermission();
+      console.log('App -> isAllow', isAllow);
 
       if (isAllow) {
         const reminders = await Reminders.getReminders();
@@ -44,6 +46,15 @@ export default function App() {
     }
   }, []);
 
+  const removeReminder = React.useCallback(async () => {
+    try {
+      const isRemoved = await Reminders.removeReminder(state.id);
+      console.log('App -> isRemoved', isRemoved);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [state.id]);
+
   React.useEffect(() => {
     getReminders();
   }, []);
@@ -67,6 +78,16 @@ export default function App() {
 
       <TouchableOpacity style={styles.buttonTouchable} onPress={addReminder}>
         <Text style={styles.buttonText}>Add Reminder</Text>
+      </TouchableOpacity>
+
+      <TextInput
+        value={state.id}
+        style={styles.textinput}
+        onChangeText={(text) => onChangeText(text, 'id')}
+      />
+
+      <TouchableOpacity style={styles.buttonTouchable} onPress={removeReminder}>
+        <Text style={styles.buttonText}>Remove Reminder</Text>
       </TouchableOpacity>
     </View>
   );
