@@ -10,4 +10,6 @@ RCT_EXTERN_METHOD(getReminder: (NSString *)reminderId resolve:(RCTPromiseResolve
 
 RCT_EXTERN_METHOD(addReminder: (NSDictionary *)config resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(removeReminder: (NSString *)id resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
+
 @end

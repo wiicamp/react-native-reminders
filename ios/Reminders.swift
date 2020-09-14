@@ -10,7 +10,7 @@ class Reminders: NSObject {
     
     @objc
     func requestPermission(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
-        eventStore.requestAccess(to: .reminder, completion: {
+        eventStore.requestAccess(to: EKEntityType.reminder, completion: {
             granted, error in
             if(error != nil){
                 let nsError:NSError = NSError(
@@ -65,7 +65,34 @@ class Reminders: NSObject {
             try eventStore.save(reminder, commit: true);
             resolve(toDictionary(reminder: reminder));
         } catch {
-            reject("ERROR", error.localizedDescription, NSError());
+            reject("ERROR", error.localizedDescription, NSError(domain: "DOMAIN", code: 200, userInfo: nil));
+        }
+    }
+    
+    @objc
+    func removeReminder(_ id: String, resolve: @escaping RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) -> Void {
+        let matching = eventStore.predicateForReminders(in: nil)
+        eventStore.fetchReminders(matching: matching) {
+            foundReminders in
+            
+            if(foundReminders?.isEmpty ?? true) {
+                resolve(false)
+                return
+            }
+            
+            let reminder = foundReminders?.first(where: { $0.calendarItemIdentifier == id })
+            
+            if(reminder === nil) {
+                resolve(false)
+                return;
+            }
+            
+            do {
+                try self.eventStore.remove(reminder!, commit: true)
+                resolve(true)
+            } catch {
+                resolve(false)
+            }
         }
     }
 }

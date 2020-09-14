@@ -1,16 +1,15 @@
 package com.wiicamp.reactnativereminders
 
 import android.Manifest
+import android.content.ContentUris
 import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.CalendarContract
-import android.util.Log
 import androidx.core.content.ContextCompat
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
-import java.util.*
 
 
 public class RemindersModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext), PermissionListener {
@@ -22,7 +21,6 @@ public class RemindersModule(reactContext: ReactApplicationContext) : ReactConte
 
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray): Boolean {
-        Log.i("PERMISSION_RESULT", "requestCode: $requestCode, grantResults: ${grantResults.toString()}")
         when (requestCode) {
             9397 -> {
                 val isGranted = !grantResults.any { predicate -> predicate != PackageManager.PERMISSION_GRANTED };
@@ -74,8 +72,6 @@ public class RemindersModule(reactContext: ReactApplicationContext) : ReactConte
                 null
         )
 
-        Log.v("VERBOSE", "cursor.count = ${cursor?.count}")
-
         try {
             val results = WritableNativeArray();
 
@@ -121,8 +117,6 @@ public class RemindersModule(reactContext: ReactApplicationContext) : ReactConte
 //        eventValues.put("eventLocation", place)
 
         val dtStart = config.getDouble("timestamp").toLong()
-        Log.v("VERBOSE", "dtStart = $dtStart");
-        Log.v("VERBOSE", "Calendar.getInstance().timeInMillis = ${Calendar.getInstance().timeInMillis}")
         eventValues.put("dtstart", dtStart)
         eventValues.put("dtend", dtStart)
         eventValues.put("eventStatus", 1)
@@ -153,5 +147,13 @@ public class RemindersModule(reactContext: ReactApplicationContext) : ReactConte
 
         promise.resolve(resolveValue)
 
+    }
+
+    @ReactMethod
+    fun removeReminder(id: String, promise: Promise) {
+        val eventUri = ContentUris.withAppendedId(
+                CalendarContract.Events.CONTENT_URI, id.toLong())
+        val deletedRows = reactApplicationContext.applicationContext.contentResolver.delete(eventUri, null, null)
+        promise.resolve(deletedRows > 0)
     }
 }
