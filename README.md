@@ -67,6 +67,9 @@ Reminders.addReminder({
   note: 'Wake-up and have breakfast!',
   timestamp: Date.now() * 60000 * 5, // next five minutes from current time (milliseconds)
 });
+
+// Remove reminder
+Reminders.removeReminder('the-reminder-id');
 ```
 
 ## Contributing
